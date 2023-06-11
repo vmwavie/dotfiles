@@ -126,6 +126,7 @@ sleep 5
 clear
 
 logo "Installing paru"
+rustup default stable
 git clone https://aur.archlinux.org/paru.git
 cd paru
 makepkg -si
