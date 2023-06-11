@@ -8,7 +8,7 @@
 I already start writing a wiki for you, you can see more to use this dotfiles and bspwm <a href="https://github.com/matheuscrestanifernandes/dotfiles/wiki">clicking here</a>.
 
 ## Info
-<img src="/dragon.jpg" alt="Linux Fetch" align="right" width="300">
+<img src="/dragon.jpg" alt="Linux Fetch" align="right" width="250">
 
 |Name|Link|
 |:---:|:---:|
