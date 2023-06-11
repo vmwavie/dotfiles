@@ -1,4 +1,5 @@
 export ZSH="$HOME/.oh-my-zsh"
+
 ZSH_THEME="mh"
 
 plugins=(git)
@@ -15,6 +16,13 @@ export EDITOR='nvim'
 export TERMINAL='alacritty'
 export BROWSER='firefox'
 export HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..)"
+export PATH=$PATH:~/android-studio/bin
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+export ANDROID_HOME=~/Android/Sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 if [ -d "$HOME/.local/bin" ] ;
   then PATH="$HOME/.local/bin:$PATH"
