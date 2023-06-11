@@ -58,7 +58,7 @@ dependencias=(base-devel rustup pacman-contrib bspwm polybar sxhkd \
 			  webp-pixbuf-loader xorg-xprop xorg-xkill physlock papirus-icon-theme \
 			  ttf-jetbrains-mono ttf-jetbrains-mono-nerd ttf-terminus-nerd ttf-inconsolata ttf-joypixels \
 			  zsh zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting xorg-xsetroot \
-        xorg-xwininfo xorg-xrandr nodejs npm yarn jdk11-openjdk python discord docker docker-compose)
+        xorg-xwininfo xorg-xrandr nodejs npm yarn jdk11-openjdk python discord docker docker-compose neovim)
 
 is_installed() {
   pacman -Qi "$1" &> /dev/null
@@ -161,6 +161,18 @@ printf "Copying files to respective directories..\n"
 
 [ ! -d ~/.config ] && mkdir -p ~/.config
 [ ! -d ~/.local/share/fonts ] && mkdir -p ~/.local/share/fonts
+[ ! -d ~/Pictures/wpp ] && mkdir -p ~/Pictures/wpp
+
+for achivos in ~/Pictures/wpp/*; do
+ cp -R "${archivos}" ~/Pictures/wpp/
+ if [ $? -eq 0 ]; then
+  printf "%s%s%s folder copied succesfully!%s\n" "${BLD}" "${CGR}" "${archivos}" "${CNC}"
+	sleep 1
+  else
+	printf "%s%s%s failed to been copied, you must copy it manually%s\n" "${BLD}" "${CRE}" "${archivos}" "${CNC}"
+	sleep 1
+  fi
+done
 
 for archivos in ~/dotfiles/config/*; do
   cp -R "${archivos}" ~/.config/
