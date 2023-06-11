@@ -21,3 +21,16 @@ I already start writing a wiki for you, you can see more to use this dotfiles an
 |File Manager|[Thunar](https://archlinux.org/packages/extra/x86_64/thunar/)|
 |Shell|[Zsh](https://archlinux.org/packages/extra/x86_64/zsh/)|
 |Aur Helper|[Paru](https://github.com/Morganamilo/paru)|
+
+## 🚀 Tools installed :
+Vscode, Lvim, Nodejs, Npm, Docker, postman, insomnia, Android-Studio, figma, notion, chrome.
+
+## 📦 setup
+
+```sh
+bash <(curl -s https://raw.githubusercontent.com/matheuscrestanifernandes/dotfiles/main/install.sh)
+```
+
+## Troubleshooting & Tips
+
+See the [Wiki](https://github.com/matheuscrestanifernandes/dotfiles/wiki)
