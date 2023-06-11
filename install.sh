@@ -163,7 +163,7 @@ printf "Copying files to respective directories..\n"
 [ ! -d ~/.local/share/fonts ] && mkdir -p ~/.local/share/fonts
 [ ! -d ~/Pictures/wpp ] && mkdir -p ~/Pictures/wpp
 
-for archivos in ~/Pictures/wpp/*; do
+for archivos in ~/dotfiles/Pictures/wpp/*; do
  cp -R "${archivos}" ~/Pictures/wpp/
  if [ $? -eq 0 ]; then
   printf "%s%s%s folder copied succesfully!%s\n" "${BLD}" "${CGR}" "${archivos}" "${CNC}"
