@@ -118,7 +118,7 @@ done
 
 [ -f ~/.zshrc ] && mv ~/.zshrc ~/${backup_folder}/.zshrc-backup-"$(date +%Y.%m.%d-%H.%M.%S)"
 
-prinf "%s%sDone!!%s\n\n" "${BLD}" "${CGR}" "${CNC}"
+printf "%s%sDone!!%s\n\n" "${BLD}" "${CGR}" "${CNC}"
 sleep 5
 
 logo "Setup develop workspace"
