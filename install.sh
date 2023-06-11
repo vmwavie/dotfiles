@@ -100,7 +100,7 @@ sleep 2
 clear
 
 logo "Backup files"
-printf "Backup files will be stored in %s%s%s/${backup_folder}%s \n\n" "${BLD}" "${CRE}" "$HOME" "${CNC}"
+printf "Backup files will be stored in ${backup_folder} \n\n" "${BLD}" "${CRE}" "$HOME" "${CNC}"
 sleep 10
 
 if [ ! -d "$backup_folder" ]; then
@@ -118,7 +118,7 @@ done
 
 [ -f ~/.zshrc ] && mv ~/.zshrc ~/${backup_folder}/.zshrc-backup-"$(date +%Y.%m.%d-%H.%M.%S)"
 
-printf "%s%sDone!!%s\n\n" "${BLD}" "${CGR}" "${CNC}"
+prinf "%s%sDone!!%s\n\n" "${BLD}" "${CGR}" "${CNC}"
 sleep 5
 
 logo "Setup develop workspace"
@@ -135,7 +135,14 @@ sleep 5
 clear
 
 logo "Installing packages"
-paru -a picom-git nvm visual-studio-code-bin postman-bin insomnia figma-linux notion-app google-chrome 
+paru -a picom-git
+paru -a nvm 
+paru -a visual-studio-code-bin
+paru -a postman-bin
+paru -a insomnia
+paru -a figma-linux
+paru -a notion-app
+paru -a google-chrome 
 
 logo "Installing Lvim Code-Editor"
 bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)

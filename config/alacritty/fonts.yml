@@ -3,18 +3,18 @@ font:
   normal:
 
     family: JetBrainsMono Nerd Font
-    #style: Regular
+    style: bold
 
   bold:
     family: JetBrainsMono Nerd Font
-    #style: Bold
+    style: Bold
   
   italic:
     family: JetBrainsMono Nerd Font
-    #style: Italic
+    style: Italic
 
   bold_italic:
     family: JetBrainsMono Nerd Font
-    #style: Bold Italic
+    style: Bold Italic
 
-  size: 12
+  size: 11

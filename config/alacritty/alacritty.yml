@@ -9,7 +9,7 @@ window:
 
   decorations: none
 
-  opacity: 1.0
+  opacity: 1.00
   dynamic_title: true
 
   history: 10000
