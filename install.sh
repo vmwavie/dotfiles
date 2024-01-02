@@ -37,6 +37,29 @@ while true; do
     done
 clear
 
+logo "Backup files"
+  printf "Backup files will be stored in ${backup_folder} \n\n" "${BLD}" "${CRE}" "$HOME" "${CNC}"
+  sleep 10
+
+  if [ ! -d "$backup_folder" ]; then
+    mkdir -p "$backup_folder"
+  fi
+
+  for folder in alacritty bspwm lvim polybar rofi sxhkd picom; do
+    if [ -d "$HOME/.config/$folder" ]; then
+      mv "$HOME/.config/$folder" "$backup_folder/${folder}_$date"
+      echo "$folder folder backed up successfully at $backup_folder/${folder}_$date"
+    else
+      echo "The folder $folder does not exist in $HOME/.config/"
+    fi
+  done
+
+  [ -f ~/.zshrc ] && mv ~/.zshrc ~/${backup_folder}/.zshrc-backup-"$(date +%Y.%m.%d-%H.%M.%S)"
+
+  printf "%s%sDone!!%s\n\n" "${BLD}" "${CGR}" "${CNC}"
+sleep 5
+clear
+
 logo "Installing needed packages.."
 
 dependencias=(base-devel rustup pacman-contrib bspwm polybar sxhkd \
@@ -87,6 +110,41 @@ paru -a betterlockscreen
 bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
 sleep 5
 clear
+
+
+
+logo "Installing dotfiles.."
+printf "Copying files to respective directories..\n"
+
+[ ! -d ~/.config ] && mkdir -p ~/.config
+[ ! -d ~/.local/share/fonts ] && mkdir -p ~/.local/share/fonts
+
+for files in dotfiles/home/.config/*; do
+ cp -R "${files}" ~/.config/
+ if [ $? -eq 0 ]; then
+  printf "%s%s%s folder copied succesfully!%s\n" "${BLD}" "${CGR}" "${archivos}" "${CNC}"
+	sleep 1
+  else
+	printf "%s%s%s failed to been copied, you must copy it manually%s\n" "${BLD}" "${CRE}" "${archivos}" "${CNC}"
+	sleep 1
+  fi
+done
+
+for archivos in dotfiles/misc/fonts/; do
+  cp -R "${archivos}" ~/.local/share/fonts/
+  if [ $? -eq 0 ]; then
+	printf "%s%s%s copied succesfully!%s\n" "${BLD}" "${CGR}" "${archivos}" "${CNC}"
+	sleep 1
+  else
+	printf "%s%s%s failed to been copied, you must copy it manually%s\n" "${BLD}" "${CRE}" "${archivos}" "${CNC}"
+	sleep 1
+  fi
+done
+
+cp -f dotfiles/home/.zshrc ~/
+fc-cache -rv >/dev/null 2>&1
+printf "%s%sFiles copied succesfully!!%s\n" "${BLD}" "${CGR}" "${CNC}"
+sleep 3
 
 echo ""
 logo "Select the necessary development environments:"
