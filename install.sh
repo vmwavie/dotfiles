@@ -122,21 +122,21 @@ printf "Copying files to respective directories..\n"
 for files in dotfiles/home/.config/*; do
  cp "${files}" ~/.config/
  if [ $? -eq 0 ]; then
-  printf "%s%s%s folder copied succesfully!%s\n" "${BLD}" "${CGR}" "${archivos}" "${CNC}"
+  printf "%s%s%s folder copied succesfully!%s\n" "${BLD}" "${CGR}" "${files}" "${CNC}"
 	sleep 1
   else
-	printf "%s%s%s failed to been copied, you must copy it manually%s\n" "${BLD}" "${CRE}" "${archivos}" "${CNC}"
+	printf "%s%s%s failed to been copied, you must copy it manually%s\n" "${BLD}" "${CRE}" "${files}" "${CNC}"
 	sleep 1
   fi
 done
 
-for archivos in dotfiles/misc/fonts/; do
-  cp "${archivos}" ~/.local/share/fonts/
+for files in dotfiles/misc/fonts/; do
+  cp "${files}" ~/.local/share/fonts/
   if [ $? -eq 0 ]; then
-	printf "%s%s%s copied succesfully!%s\n" "${BLD}" "${CGR}" "${archivos}" "${CNC}"
+	printf "%s%s%s copied succesfully!%s\n" "${BLD}" "${CGR}" "${files}" "${CNC}"
 	sleep 1
   else
-	printf "%s%s%s failed to been copied, you must copy it manually%s\n" "${BLD}" "${CRE}" "${archivos}" "${CNC}"
+	printf "%s%s%s failed to been copied, you must copy it manually%s\n" "${BLD}" "${CRE}" "${files}" "${CNC}"
 	sleep 1
   fi
 done
