@@ -120,7 +120,7 @@ printf "Copying files to respective directories..\n"
 [ ! -d ~/.local/share/fonts ] && mkdir -p ~/.local/share/fonts
 
 for files in dotfiles/home/.config/*; do
- cp -R "${files}" ~/.config/
+ cp "${files}" ~/.config/
  if [ $? -eq 0 ]; then
   printf "%s%s%s folder copied succesfully!%s\n" "${BLD}" "${CGR}" "${archivos}" "${CNC}"
 	sleep 1
@@ -131,7 +131,7 @@ for files in dotfiles/home/.config/*; do
 done
 
 for archivos in dotfiles/misc/fonts/; do
-  cp -R "${archivos}" ~/.local/share/fonts/
+  cp "${archivos}" ~/.local/share/fonts/
   if [ $? -eq 0 ]; then
 	printf "%s%s%s copied succesfully!%s\n" "${BLD}" "${CGR}" "${archivos}" "${CNC}"
 	sleep 1
