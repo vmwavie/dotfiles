@@ -1,36 +1,40 @@
-# BSPWM DOTFILES - Include setup for development.
-#### This dotfiles include setup in bspwm and tools to work with react and nodejs but if you want work other languages have base to this.
+# DOTFILES
+#### This dotfiles can be used as a post-install for your archlinux. In addition to the setup files for bspwm, it also has an installer for some programming tools and environments.
 
 ### Preview :
-<img src="/preview.png" />
+<img src="./assets/preview.png" />
 
-## 📚 Wiki :
-I already start writing a wiki for you, you can see more to use this dotfiles and bspwm <a href="https://github.com/matheuscrestanifernandes/dotfiles/wiki">clicking here</a>.
+## 🚀 Optional Tools :
+	[android_sdk]
+		android-studio
+		jdk17-openjdk
+		
+	[react]
+		npm
+		yarn
+		nvm
+		typescript
+		
+	[flutter]
+		flutter
+	
+	[php]
+		php 7.2 (php72-fpm)
+		nginx
+		php-xdebug
 
-## Info
-<img src="/dragon.jpg" alt="Linux Fetch" align="right" width="250">
-
-|Name|Link|
-|:---:|:---:|
-|WM|[BSPWM](https://github.com/baskerville/bspwm)|
-|Bar|[Polybar](https://github.com/polybar/polybar)|
-|Menu|[Rofi](https://github.com/davatorium/rofi)|
-|Compositor|[Picom](https://archlinux.org/packages/community/x86_64/picom/)|
-|Terminal|[Alacritty](https://github.com/alacritty/alacritty)|
-|Music/Player|[mpd](https://archlinux.org/packages/extra/x86_64/mpd/)-[ncmpcpp](https://archlinux.org/packages/community/x86_64/ncmpcpp/)|
-|File Manager|[Thunar](https://archlinux.org/packages/extra/x86_64/thunar/)|
-|Shell|[Zsh](https://archlinux.org/packages/extra/x86_64/zsh/)|
-|Aur Helper|[Paru](https://github.com/Morganamilo/paru)|
-
-## 🚀 Tools installed :
-Vscode, Lvim, Nodejs, Npm, Docker, postman, insomnia, Android-Studio, figma, notion, chrome.
-
+	[nodejs]
+		nodejs
+		npm
+		yarn
+		nvm
+		postman
+		
+## 📃 Default Tools :
+	alacritty, lvim, google-chrome, visual-studio-code, paru
+	
 ## 📦 setup
 
 ```sh
-bash <(curl -s https://raw.githubusercontent.com/matheuscrestanifernandes/dotfiles/main/install.sh)
+	sudo pacman -S git && git clone https://github.com/vmwavie/dotfiles.git && cd dotfiles && chmod +x install.sh && ./install.sh
 ```
-
-## Troubleshooting & Tips
-
-See the [Wiki](https://github.com/matheuscrestanifernandes/dotfiles/wiki)

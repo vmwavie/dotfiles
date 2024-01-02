@@ -1,8 +1,4 @@
 #!/usr/bin/env bash
-#	Script to install my dotfiles
-# Author : mathw_witchcraft
-# Github : https://github.com/matheuscrestanifernandes
-
 CRE=$(tput setaf 1)
 CYE=$(tput setaf 3)
 CGR=$(tput setaf 2)
@@ -10,38 +6,29 @@ CBL=$(tput setaf 4)
 BLD=$(tput bold)
 CNC=$(tput sgr0)
 
-backup_folder=~/.rice-backup
+username=$(whoami)
+backup_folder=~/.ricebkp
 date=$(date +%Y%m%d-%H%M%S)
 
 logo () {
-	
-	local text="${1:?}"
-	echo -en "
-  ⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⣤⣶⣶⣶⣶⣶⣤⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-  ⠀⠀⠀⠀⠀⠀⣠⣴⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣄⡀⠀⠀⠀⠀⠀
-  ⠀⠀⠀⣠⣴⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣮⣵⣄⠀⠀⠀ 
-  ⠀⠀⢾⣻⣿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢿⣿⣿⡀⠀ 
-  ⠀⠸⣽⣻⠃⣿⡿⠋⣉⠛⣿⣿⣿⣿⣿⣿⣿⣿⣏⡟⠉⡉⢻⣿⡌⣿⣳⡥⠀ 
-  ⠀⢜⣳⡟⢸⣿⣷⣄⣠⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⣤⣠⣼⣿⣇⢸⢧⢣⠀ 
-  ⠀⠨⢳⠇⣸⣿⣿⢿⣿⣿⣿⣿⡿⠿⠿⠿⢿⣿⣿⣿⣿⣿⣿⣿⣿⠀⡟⢆⠀ 
-  ⠀⠀⠈⠀⣾⣿⣿⣼⣿⣿⣿⣿⡀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣽⣿⣿⠐⠈⠀⠀ 
-  ⠀⢀⣀⣼⣷⣭⣛⣯⡝⠿⢿⣛⣋⣤⣤⣀⣉⣛⣻⡿⢟⣵⣟⣯⣶⣿⣄⡀⠀ 
-  ⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣶⣶⣶⣾⣶⣶⣴⣾⣿⣿⣿⣿⣿⣿⢿⣿⣿⣧ 
-  ⣿⣿⣿⠿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠿⣿⡿
-  mathw Dotfiles\n\n"
-    printf ' %s [%s%s %s%s %s]%s\n\n' "${CRE}" "${CNC}" "${CYE}" "${text}" "${CNC}" "${CRE}" "${CNC}"
+local text="${1:?}"
+printf "\n"
+echo "██╗   ██╗███╗   ███╗██╗    ██╗ █████╗ ██╗   ██╗██╗███████╗";
+echo "██║   ██║████╗ ████║██║    ██║██╔══██╗██║   ██║██║██╔════╝";
+echo "██║   ██║██╔████╔██║██║ █╗ ██║███████║██║   ██║██║█████╗  ";
+echo "╚██╗ ██╔╝██║╚██╔╝██║██║███╗██║██╔══██║╚██╗ ██╔╝██║██╔══╝  ";
+echo " ╚████╔╝ ██║ ╚═╝ ██║╚███╔███╔╝██║  ██║ ╚████╔╝ ██║███████╗";
+echo "  ╚═══╝  ╚═╝     ╚═╝ ╚══╝╚══╝ ╚═╝  ╚═╝  ╚═══╝  ╚═╝╚══════╝";
+printf "\n\n"
+printf '%s%s%s%s%s%s%s' "${CRE}" "${text}"
 }
 
-if [ "$(id -u)" = 0 ]; then
-    echo "This script MUST NOT be run as root user."
-    exit 1
-fi
+logo "Welcome ${username}!"
 
-logo "Welcome!"
-printf '%s%sThis script will check if you have the necessary dependencies, and if not, it will install them. Then, it will clone the RICE in your HOME directory.\nAfter that, it will create a secure backup of your files, and then copy the new files to your computer.\n\nMy dotfiles DO NOT modify any of your system configurations.\nYou will be prompted for your root password to install missing dependencies and/or to switch to zsh shell if its not your default.\n\nThis script doesnt have the potential power to break your system, it only copies files from my repository to your HOME directory.%s\n\n' "${BLD}" "${CRE}" "${CNC}"
+printf '\n%s%sThis script will change your systems configuration files, and install some development tools of your choice.\n Although the backup will be made, it will only be your configurations, so only install it if you are completely sure of what you are doing.%s\n\n' "${BLD}" "${CRE}" "${CNC}"
 
 while true; do
-	read -rp " Do you wish to continue? [y/N]: " yn
+	read -rp "Do you wish to continue? [y/N]: " yn
 		case $yn in
 			[Yy]* ) break;;
 			[Nn]* ) exit;;
@@ -50,24 +37,24 @@ while true; do
     done
 clear
 
+logo "Installing needed packages.."
+
 dependencias=(base-devel rustup pacman-contrib bspwm polybar sxhkd \
-			  alacritty brightnessctl dunst rofi lsd \
-			  jq polkit-gnome git playerctl mpd \
-			  ncmpcpp geany ranger mpc xdotool \
+			  alacritty brightnessctl neovim dunst rofi lsd stalonetray \
+			  jq polkit-gnome git playerctl mpd xclip \
+			  geany ranger mpc xdo xdotool jgmenu \
 			  feh ueberzug maim pamixer libwebp xdg-user-dirs \
 			  webp-pixbuf-loader xorg-xprop xorg-xkill physlock papirus-icon-theme \
 			  ttf-jetbrains-mono ttf-jetbrains-mono-nerd ttf-terminus-nerd ttf-inconsolata ttf-joypixels \
-			  zsh zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting xorg-xsetroot \
-        xorg-xwininfo xorg-xrandr nodejs npm yarn jdk11-openjdk python discord docker docker-compose neovim)
+			  zsh zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting \
+			  imagemagick xorg-xdpyinfo xorg-xsetroot xorg-xwininfo xorg-xrandr meson ninja)
 
 is_installed() {
   pacman -Qi "$1" &> /dev/null
   return $?
 }
 
-printf "%s%sChecking fologo "Installing Docker"
-sudo pacman -S docker
-sudo systemctl enable docker-desktopr required packages...%s\n" "${BLD}" "${CBL}" "${CNC}"
+printf "%s%s\nChecking for required packages...%s\n" "${BLD}" "${CBL}" "${CNC}"
 for paquete in "${dependencias[@]}"
 do
   if ! is_installed "$paquete"; then
@@ -81,50 +68,6 @@ done
 sleep 3
 clear
 
-logo "Preparing Folders"
-if [ ! -e $HOME/.config/user-dirs.dirs ]; then
-	xdg-user-dirs-update
-	echo "Creating xdg-user-dirs"
-else
-	echo "user-dirs.dirs already exists"
-fi
-sleep 2 
-clear
-
-logo "Downloading dotfiles"
-[ -d ~/dotfiles ] && rm -rf ~/dotfiles
-printf "Cloning rice from https://github.com/matheuscrestanifernandes/dotfiles"
-cd
-git clone --depth=1 https://github.com/matheuscrestanifernandes/dotfiles.git
-sleep 2
-clear
-
-logo "Backup files"
-printf "Backup files will be stored in ${backup_folder} \n\n" "${BLD}" "${CRE}" "$HOME" "${CNC}"
-sleep 10
-
-if [ ! -d "$backup_folder" ]; then
-  mkdir -p "$backup_folder"
-fi
-
-for folder in alacritty bspwm lvim polybar rofi sxhkd picom; do
-  if [ -d "$HOME/.config/$folder" ]; then
-    mv "$HOME/.config/$folder" "$backup_folder/${folder}_$date"
-    echo "$folder folder backed up successfully at $backup_folder/${folder}_$date"
-  else
-    echo "The folder $folder does not exist in $HOME/.config/"
-  fi
-done
-
-[ -f ~/.zshrc ] && mv ~/.zshrc ~/${backup_folder}/.zshrc-backup-"$(date +%Y.%m.%d-%H.%M.%S)"
-
-printf "%s%sDone!!%s\n\n" "${BLD}" "${CGR}" "${CNC}"
-sleep 5
-
-logo "Setup develop workspace"
-sleep 5
-clear
-
 logo "Installing paru"
 rustup default stable
 git clone https://aur.archlinux.org/paru.git
@@ -135,69 +78,107 @@ rm -rf paru
 sleep 5
 clear
 
-logo "Installing packages"
+logo "Installing packages, select the best option for the packages listed"
 paru -a picom-git
-paru -a nvm 
+paru -a google-chrome
 paru -a visual-studio-code-bin
-paru -a postman-bin
-paru -a insomnia
-paru -a figma-linux
-paru -a notion-app
-paru -a google-chrome 
+paru -a betterlockscreen
 
-logo "Installing Lvim Code-Editor"
 bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
 sleep 5
 clear
 
-logo "Setup AndroidStudio"
-archlinux-java set java-11-openjdk
-sudo sed -i “/\[multilib\]/,/Include/”‘s/^#//’ /etc/pacman.conf
-paru -a android-studio
+echo ""
+logo "Select the necessary development environments:"
+echo ""
+source utils/checkbox.sh "android-sdk" "react" "flutter" "vuejs" "php" "nodejs"
+
+printf "\n"
+
+android_sdk=false;
+react=false;
+flutter=false;
+vuejs=false;
+php=false;
+nodejs=false;
+
+for ((i = 0; i < max; i++)); do
+  if [ "$i" = 0 ] && [ "${selected[i]}" = true ]; then
+    android_sdk=true;
+  fi
+  if [ "$i" = 1 ] && [ "${selected[i]}" = true ]; then
+    react=true;
+  fi
+  if [ "$i" = 2 ] && [ "${selected[i]}" = true ]; then
+    flutter=true;
+  fi
+  if [ "$i" = 3 ] && [ "${selected[i]}" = true ]; then
+    vuejs=true;
+  fi
+  if [ "$i" = 4 ] && [ "${selected[i]}" = true ]; then
+    php=true;
+  fi
+  if [ "$i" = 5 ] && [ "${selected[i]}" = true ]; then
+    nodejs=true;
+  fi
+done
 sleep 5
 clear
 
-logo "Installing dotfiles.."
-printf "Copying files to respective directories..\n"
+if [ $android_sdk == true ];then
+    logo "Setuping android-sdk environment..."
+    sudo pacman -S jdk17-openjdk 
+    archlinux-java set java-17-openjdk
+    paru -a android-studio
+    sleep 5
+    clear
+fi
 
-[ ! -d ~/.config ] && mkdir -p ~/.config
-[ ! -d ~/.local/share/fonts ] && mkdir -p ~/.local/share/fonts
-[ ! -d ~/Pictures/wpp ] && mkdir -p ~/Pictures/wpp
+if [ $react == true ];then
+    logo "Setuping react-js/react-native environment (for react-native emulator use android-sdk option)..."
+    sudo pacman -S nodejs npm yarn 
+    paru -a nvm
+    sudo npm install -g typescript --save-dev
+    sleep 5
+    clear
+fi
 
-for archivos in ~/dotfiles/Pictures/wpp/*; do
- cp -R "${archivos}" ~/Pictures/wpp/
- if [ $? -eq 0 ]; then
-  printf "%s%s%s folder copied succesfully!%s\n" "${BLD}" "${CGR}" "${archivos}" "${CNC}"
-	sleep 1
-  else
-	printf "%s%s%s failed to been copied, you must copy it manually%s\n" "${BLD}" "${CRE}" "${archivos}" "${CNC}"
-	sleep 1
-  fi
-done
+if [ $flutter == true ];then
+    logo "Setuping flutter environment (for emulator use android-sdk option).."
+    paru -a flutter
+    sleep 5
+    clear
+fi
 
-for archivos in ~/dotfiles/config/*; do
-  cp -R "${archivos}" ~/.config/
-  if [ $? -eq 0 ]; then
-	printf "%s%s%s folder copied succesfully!%s\n" "${BLD}" "${CGR}" "${archivos}" "${CNC}"
-	sleep 1
-  else
-	printf "%s%s%s failed to been copied, you must copy it manually%s\n" "${BLD}" "${CRE}" "${archivos}" "${CNC}"
-	sleep 1
-  fi
-done
+if [ $vuejs == true ];then
+    logo "Setuping vuejs environment..."
+    sudo pacman -S nodejs npm yarn 
+    paru -a nvm
+    sudo npm install -g @vue/cli
+    sleep 5
+    clear
+fi
 
-for archivos in ~/dotfiles/fonts/*; do
-  cp -R "${archivos}" ~/.local/share/fonts/
-  if [ $? -eq 0 ]; then
-	printf "%s%s%s copied succesfully!%s\n" "${BLD}" "${CGR}" "${archivos}" "${CNC}"
-	sleep 1
-  else
-	printf "%s%s%s failed to been copied, you must copy it manually%s\n" "${BLD}" "${CRE}" "${archivos}" "${CNC}"
-	sleep 1
-  fi
-done
+if [ $php == true ];then
+    logo "Setuping php environment..."
+    sudo pacman -S nodejs npm yarn 
+    paru -a php72
+    paru -a php72-fpm
+    paru -a php72-xdebug
+    sudo pacman -S nginx
+    sudo systemctl enable php72-fpm
+    sudo systemctl enable nginx
+    cp dotfiles/misc/nginx/nginx.conf /etc/nginx/
+    cp dotfiles/misc/php/40-xdebug.ini /etc/php72/conf.d/
+    sleep 5
+    clear
+fi
 
-cp -f "$HOME"/dotfiles/home/.zshrc "$HOME"
-fc-cache -rv >/dev/null 2>&1
-printf "%s%sFiles copied succesfully!!%s\n" "${BLD}" "${CGR}" "${CNC}"
-sleep 3
+if [ $nodejs == true ];then
+    logo "Setuping nodejs environment..."
+    sudo pacman -S nodejs npm yarn 
+    paru -a nvm
+    paru -a postman-bin
+    sleep 5
+    clear
+fi

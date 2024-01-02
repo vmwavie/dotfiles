@@ -1,0 +1,98 @@
+super + Return
+	~/.config/bspwm/scripts/system/OpenApps  --terminal
+
+super + @space
+	~/.config/bspwm/scripts/system/OpenApps --menu
+
+super + e
+	~/.config/bspwm/scripts/system/OpenApps  --filemanager
+
+~button3
+  xqp 0 $(xdo id -N Bspwm -n root) && jgmenu --csv-file=~/.config/bspwm/scripts/system/menu.txt --config-file=~/.config/bspwm/plugins/jgmenu/jgmenurc
+
+super + alt + o
+	tdrop -a -w 70% -h 35% -y 0 -x 15%  --class scratch alacritty --class=scratch
+
+ctrl + super + alt + {p,r,q,l,k}
+	{systemctl poweroff, systemctl reboot,bspc quit,physlock -d,xkill}
+
+super + {h,u}
+	~/.config/bspwm/scripts/styles/HideBar {-h,-u}
+	
+Print
+	~/.config/bspwm/scripts/system/ScreenShoTer --now
+
+ctrl + Print
+	~/.config/bspwm/scripts/system/ScreenShoTer --sel
+
+shift + Print
+	~/.config/bspwm/scripts/system/ScreenShoTer --active
+
+XF86MonBrightness{Up,Down}
+  ~/.config/bspwm/scripts/modules/Brightness {up,down}
+
+XF86Audio{RaiseVolume,LowerVolume,Mute}
+	~/.config/bspwm/scripts/modules/Volume{ --inc, --dec, --toggle}
+	
+super + alt + r
+	bspc wm -r
+
+super + {_,shift + }q
+	bspc node -{c,k}
+
+super + Escape
+	pkill -USR1 -x sxhkd; dunstify -u low -i ~/.config/bspwm/assets/reload.svg 'sxhkd' 'The configuration file has been reloaded successfully!'
+
+super + m
+	bspc desktop -l next
+
+super + {t,shift + t,s,f}
+	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+
+ctrl + alt {m,x,s,p}
+	bspc node -g {marked,locked,sticky,private}
+
+ctrl + alt + h
+	~/.config/bspwm/scripts/styles/BspHideNode
+
+super + r
+	bspc node @/ --rotate {90,-90}
+
+super + l
+  betterlockscreen -l
+
+super + c
+	bspc node @/ --circulate {backward,forward}
+
+super + {_,shift + }{Left,Down,Up,Right}
+	bspc node -{f,s} {west,south,north,east}
+
+super + ctrl + {Left,Right}
+	bspc desktop -f {prev,next}.local
+
+super + {grave,Tab}
+	bspc {node,desktop} -f last
+
+super + ctrl + {_,shift + }{1-9,0}
+	bspc {desktop -f,node -d} '^{1-9,10}'
+	
+super + ctrl + shift + {Left,Right}
+	bspc node -d {prev,next} '--follow'
+
+super + ctrl + {h,j,k,l}
+	bspc node -p {west,south,north,east}
+
+super + ctrl + space
+	bspc node -p cancel
+	
+super + ctrl + shift + space
+	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+
+super + alt + {Left,Down,Up,Right}
+	bspc node -z {left -10 0,bottom 0 10,top 0 -10,right 10 0}
+
+super + alt + shift + {Left,Down,Up,Right}
+	bspc node -z {right -10 0,top 0 10,bottom 0 -10,left 10 0}
+
+alt + shift {Left,Down,Up,Right}
+	bspc node -v {-10 0,0 10,0 -10,10 0}
